@@ -1,1 +1,3 @@
-ls
+#!/bin/sh
+
+python3 --version

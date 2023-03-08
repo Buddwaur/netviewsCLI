@@ -1,50 +1,56 @@
 package netviews.netviewscli;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-@Command ( name = "setup", description = "command to setup NetViews with different SDN Controllers",
-        mixinStandardHelpOptions = true )
+@Command(name = "setup", description = "command to setup NetViews with different SDN Controllers", mixinStandardHelpOptions = true)
 public class Setup implements Runnable {
 
-    private final String   pathToOnosSetup = "/testls.sh";
+    private final String pathToOnosSetup = "./netviewscli/src/main/java/netviews/netviewscli/testls.sh";
 
-    @Parameters ( paramLabel = "<controller>", defaultValue = "onos", description = "name of the SDN controller" )
-    private final String[] controllers     = { "default" };
+    @Parameters(paramLabel = "<controller>", defaultValue = "onos", description = "name of the SDN controller")
+    private final String[] controllers = { "default" };
 
     @Override
-    public void run () {
+    public void run() {
 
         String controller = controllers[0];
 
-        if ( controller.length() == 0 ) {
+        if (controller.length() == 0) {
             // If no parameter is passed in, then the default is set here.
             controller = "onos";
         }
 
         // If a default value passed
-        if ( controller.equals( "onos" ) ) {
+        if (controller.equals("onos")) {
 
             final Runtime runTimeObj = Runtime.getRuntime();
             // Setup onos
             try {
-                System.out.println( pathToOnosSetup );
-                runTimeObj.exec( pathToOnosSetup );
-            }
-            catch ( final IOException e ) {
-                // TODO Auto-generated catch block
+                System.out.println(pathToOnosSetup);
+                Process process = runTimeObj.exec(pathToOnosSetup);
+                BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+                // Read the output from the command
+                System.out.println("Here is the standard output of the command:\n");
+                String s = null;
+                while ((s = stdInput.readLine()) != null) {
+                    System.out.println(s);
+                }
+            } catch (final IOException e) {
                 e.printStackTrace();
             }
 
-        }
-        else if ( controllers[0].length() > 1 ) {
+        } else if (controllers[0].length() > 1) {
             // For non-default values
-        }
-        else {
+        } else {
             // Print usage
-            System.out.println( "Controller unavailable" );
+            System.out.println("Controller unavailable");
         }
 
     }
