@@ -1,5 +1,12 @@
 [
   {
+    "name" : "netviews.netviewscli.Help",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  },
+  {
     "name" : "netviews.netviewscli.Setup",
     "allDeclaredConstructors" : true,
     "allPublicConstructors" : true,
@@ -7,6 +14,16 @@
     "allPublicMethods" : true,
     "fields" : [
       { "name" : "controllers", "allowWrite" : true }
+    ]
+  },
+  {
+    "name" : "netviews.netviewscli.TestCommand",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "message", "allowWrite" : true }
     ]
   },
   {
