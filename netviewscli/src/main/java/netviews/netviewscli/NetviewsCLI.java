@@ -48,6 +48,10 @@ public class NetviewsCLI {
                     break;
                 case "setup":
                     exitCode = new CommandLine(new Setup()).execute(arguments);
+                    break;
+                case "AddPolicyElements":
+                	exitCode = new CommandLine(new AddPolicyElementsCommand()).execute(arguments);
+                	break;
                 default:
 
             }
