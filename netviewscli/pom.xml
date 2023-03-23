@@ -31,6 +31,18 @@
         <artifactId>picocli-codegen</artifactId>
         <version>4.7.1</version>
   	</dependency>
+  	
+  	<dependency>
+  		<groupId>jakarta.xml.ws</groupId>
+  		<artifactId>jakarta.xml.ws-api</artifactId>
+  		<version>2.3.3</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.sun.xml.ws</groupId>
+  		<artifactId>jaxws-rt</artifactId>
+  		<version>2.3.3</version>
+  		<scope>runtime</scope>
+  	</dependency>
   </dependencies>
 
   <build>
