@@ -49,8 +49,8 @@ public class NetviewsCLI {
                 case "setup":
                     exitCode = new CommandLine(new Setup()).execute(arguments);
                     break;
-                case "AddPolicyElements":
-                	exitCode = new CommandLine(new AddPolicyElementsCommand()).execute(arguments);
+                case "OverwritePolicy":
+                	exitCode = new CommandLine(new OverwritePolicy()).execute(arguments);
                 	break;
                 default:
 
