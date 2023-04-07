@@ -52,6 +52,9 @@ public class NetviewsCLI {
                 case "OverwritePolicy":
                 	exitCode = new CommandLine(new OverwritePolicy()).execute(arguments);
                 	break;
+                case "exit":
+                	scan.close();
+                	System.exit(0);
                 default:
 
             }
