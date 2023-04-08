@@ -13,6 +13,8 @@ public class NetviewsCLI {
         String input;
 
         final String exit = "exit";
+        
+        
 
         // final TestCommand command = new TestCommand();
         int exitCode = 0;
@@ -24,6 +26,8 @@ public class NetviewsCLI {
             final String[] parsedInput = input.split(" ");
 
             final String command = parsedInput[0];
+            
+            System.out.println(command);
 
             String arguments = "";
             for (int i = 1; i < parsedInput.length; i++) {
@@ -32,8 +36,11 @@ public class NetviewsCLI {
                 if (i != parsedInput.length - 1) {
                     arguments = arguments.concat(" ");
                 }
-
+                
+                
             }
+            
+            System.out.println(arguments);
 
             // System.out.println( Arrays.toString( parsedInput ) );
             // System.out.println( command );
@@ -50,7 +57,7 @@ public class NetviewsCLI {
                     exitCode = new CommandLine(new Setup()).execute(arguments);
                     break;
                 case "OverwritePolicy":
-                	exitCode = new CommandLine(new OverwritePolicy()).execute(arguments);
+                	exitCode = new CommandLine(new OverwritePolicy()).execute();
                 	break;
                 case "exit":
                 	scan.close();
