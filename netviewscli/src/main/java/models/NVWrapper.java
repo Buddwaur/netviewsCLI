@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class NVWrapper {
 	private ArrayList<Node> nodes;
