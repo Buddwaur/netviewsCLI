@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-import models.NVWrapper;
 import picocli.CommandLine;
 
 import java.awt.Graphics;
@@ -48,16 +47,13 @@ public class NetviewsCLI {
             // }
 
             // }
-
-            System.out.println(arguments[0] + " " + arguments[1]);
-
             // System.out.println( Arrays.toString( parsedInput ) );
             // System.out.println( command );
             // System.out.println( arguments );
 
             try {
-                switch (command) {
-                    case "TestCommand":
+                switch (command.toLowerCase()) {
+                    case "testcommand":
                         exitCode = new CommandLine(new TestCommand()).execute(arguments);
                         break;
                     case "help":
@@ -66,27 +62,43 @@ public class NetviewsCLI {
                     case "setup":
                         exitCode = new CommandLine(new Setup()).execute(arguments);
                         break;
-                    case "OverwritePolicy":
+                    case "overwritepolicy":
                         exitCode = new CommandLine(new OverwritePolicy()).execute();
                         break;
                     case "addnode":
                         exitCode = new CommandLine(new AddNode()).execute(arguments);
                         break;
+                    case "removenode":
+                        exitCode = new CommandLine(new RemoveNode()).execute(arguments);
+                        break;
+                    case "addassociation":
+                        exitCode = new CommandLine(new AddAssociation()).execute(arguments);
+                        break;
+                    case "removeassociation":
+                        exitCode = new CommandLine(new RemoveAssociation()).execute(arguments);
+                        break;
+                    case "addassignment":
+                        exitCode = new CommandLine(new AddAssignment()).execute(arguments);
+                        break;
+                    case "removeassignment":
+                        exitCode = new CommandLine(new RemoveAssignment()).execute(arguments);
+                        break;
                     case "exit":
                         scan.close();
                         System.exit(0);
                     default:
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            System.out.println(exitCode);
 
         } while (input.compareTo(exit) != 0);
         scan.close();
     }
 
     private static void printTitle() {
+        System.out.println();
         int width = 100;
         int height = 50;
         Random rand = new Random();
@@ -142,5 +154,6 @@ public class NetviewsCLI {
 
             System.out.println(stringBuilder);
         }
+        System.out.println();
     }
 }

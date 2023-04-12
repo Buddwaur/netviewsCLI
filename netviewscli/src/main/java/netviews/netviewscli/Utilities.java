@@ -24,7 +24,7 @@ public class Utilities {
 		NVWrapper object = null;
 
 		try {
-			fileReader = new FileReader("netviewscli\\src\\main\\java\\test_files\\med-topo-policy.json");
+			fileReader = new FileReader("netviewscli/src/main/java/test_files/test.json");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,11 +33,11 @@ public class Utilities {
 			object = gson.fromJson(fileReader, NVWrapper.class);
 			System.out.println(object);
 		} else {
-			System.out.println("Mikey said so");
+			System.out.println("fileReader is null in deserialize");
 		}
 
 		if (object == null) {
-			System.out.println("Fuck");
+			System.out.println("Object is null in deserialize");
 		}
 
 		return object;
@@ -48,7 +48,7 @@ public class Utilities {
 		String output = gson.toJson(obj);
 		System.out.println(output);
 		try {
-			fileWriter = new FileWriter("netviewscli\\src\\main\\java\\test_files\\test.json");
+			fileWriter = new FileWriter("netviewscli/src/main/java/test_files/test.json");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

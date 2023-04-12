@@ -1,7 +1,6 @@
 package netviews.netviewscli;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -10,10 +9,12 @@ import picocli.CommandLine.Parameters;
 
 @Command(name = "setup", description = "command to setup NetViews with different SDN Controllers", mixinStandardHelpOptions = true)
 public class Setup implements Runnable {
-//D:\NCSU Related\Cybersecurity Projects\NetViewsLocal\NVCLI\netviewsCLI\netviewscli\src\main\java\netviews\netviewscli\Setup.java
-//    private final String pathToOnosSetup = "./netviewscli/src/main/java/netviews/netviewscli/testls.sh";
-	private final String pathToOnosSetup = "../../../../../scripts/setup_original.sh";
-	
+    // D:\NCSU Related\Cybersecurity
+    // Projects\NetViewsLocal\NVCLI\netviewsCLI\netviewscli\src\main\java\netviews\netviewscli\Setup.java
+    // private final String pathToOnosSetup =
+    // "./netviewscli/src/main/java/netviews/netviewscli/testls.sh";
+    private final String pathToOnosSetup = "../../../../../scripts/setup_original.sh";
+
     @Parameters(paramLabel = "<controller>", defaultValue = "onos", description = "name of the SDN controller")
     private final String[] controllers = { "default" };
 
