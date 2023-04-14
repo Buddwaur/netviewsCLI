@@ -142,7 +142,6 @@ public class NVWrapper {
 	private Node findNode(String node) {
 		for (Node inNodes : nodes) {
 			if (inNodes.getName().equals(node)) {
-				// System.out.println("Node name is a duplicate");
 				return inNodes;
 			}
 		}
@@ -153,7 +152,6 @@ public class NVWrapper {
 	private Association findAssociation(String source, String target) {
 		for (Association inAssoc : associations) {
 			if (inAssoc.getSource().equals(source) && inAssoc.getTarget().equals(target)) {
-				// System.out.println("Node name is a duplicate");
 				return inAssoc;
 			}
 		}
@@ -164,7 +162,6 @@ public class NVWrapper {
 	private Assignment findAssignment(String source, String target) {
 		for (Assignment inAssign : assignments) {
 			if (inAssign.getSource().equals(source) && inAssign.getTarget().equals(target)) {
-				// System.out.println("Node name is a duplicate");
 				return inAssign;
 			}
 		}

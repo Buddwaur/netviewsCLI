@@ -56,9 +56,6 @@ public class NetviewsCLI {
                     case "testcommand":
                         exitCode = new CommandLine(new TestCommand()).execute(arguments);
                         break;
-                    case "help":
-                        // exitCode = new CommandLine( new Help() ).execute();
-                        break;
                     case "setup":
                         exitCode = new CommandLine(new Setup()).execute(arguments);
                         break;
@@ -129,8 +126,6 @@ public class NetviewsCLI {
             if (stringBuilder.toString().trim().isEmpty()) {
                 continue;
             }
-
-            // System.out.println(stringBuilder);
         }
 
         for (int y = 0; y < height; y++) {
@@ -143,8 +138,6 @@ public class NetviewsCLI {
             if (stringBuilder.toString().trim().isEmpty()) {
                 continue;
             }
-
-            // System.out.println(stringBuilder);
         }
 
         for (int y = 0; y < height; y++) {
