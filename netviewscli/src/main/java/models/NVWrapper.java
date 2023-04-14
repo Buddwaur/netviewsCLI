@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NVWrapper {
 	private ArrayList<Node> nodes;
@@ -102,6 +103,40 @@ public class NVWrapper {
 		}
 
 		System.out.println("Error: Association not found");
+	}
+
+	public void addOperations(String source, String target, String[] operations) {
+		Association association = findAssociation(source, target);
+
+		String currentOperations[] = association.getOperations();
+		int length = currentOperations.length;
+		currentOperations = Arrays.copyOf(currentOperations, length + operations.length);
+		for (int i = length; i < currentOperations.length; i++) {
+			currentOperations[i] = operations[i - length];
+		}
+
+		association.setOperations(currentOperations);
+	}
+
+	public void removeOperations(String source, String target, String operations[]) {
+		Association association = findAssociation(source, target);
+
+		String currentOpperation[] = association.getOperations();
+
+		int swapped = 0;
+		for (int i = 0; i < operations.length; i++) {
+			for (int j = 0; j <= currentOpperation.length - swapped; j++) {
+				if (operations[i].equals(currentOpperation[j])) {
+					currentOpperation[j] = currentOpperation[currentOpperation.length - 1 - swapped];
+					currentOpperation[currentOpperation.length - 1 - swapped] = operations[i];
+					swapped++;
+					break;
+				}
+			}
+
+		}
+		association.setOperations(Arrays.copyOf(currentOpperation, currentOpperation.length - operations.length));
+
 	}
 
 	private Node findNode(String node) {

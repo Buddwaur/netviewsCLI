@@ -3,9 +3,7 @@ package netviews.netviewscli;
 import picocli.CommandLine.Command;
 //import picocli.CommandLine.Parameters;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;

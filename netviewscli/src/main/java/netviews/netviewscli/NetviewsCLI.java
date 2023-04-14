@@ -83,6 +83,12 @@ public class NetviewsCLI {
                     case "removeassignment":
                         exitCode = new CommandLine(new RemoveAssignment()).execute(arguments);
                         break;
+                    case "addoperations":
+                        exitCode = new CommandLine(new AddOperations()).execute(arguments);
+                        break;
+                    case "removeoperations":
+                        exitCode = new CommandLine(new RemoveOperations()).execute(arguments);
+                        break;
                     case "exit":
                         scan.close();
                         System.exit(0);
