@@ -43,7 +43,7 @@ public class NVWrapper {
 			return;
 		}
 
-		System.out.println("Error: duplicate node");
+		throw new IllegalArgumentException("Duplicate node name");
 	}
 
 	public void removeNode(String name) {
@@ -55,19 +55,25 @@ public class NVWrapper {
 			return;
 		}
 
-		System.out.println("Error: Node not found");
+		throw new IllegalArgumentException("Node not found");
 
 	}
 
-	public void addAssociation(String source, String target, String operations[]) {
+	public void addAssociation(String source, String target, String operations[]) throws IllegalArgumentException{
 		Association newAssoc = new Association(source, target, operations);
 
 		if (findAssociation(source, target) == null) {
-			associations.add(newAssoc);
-			return;
+			if (valid(source, target)) {
+				associations.add(newAssoc);
+				return;
+			}
+			else {
+				throw new IllegalArgumentException("Invalid source and target.");
+			}
+			
 		}
 
-		System.out.println("Error: duplicate association");
+		throw new IllegalArgumentException("Duplicate Associations.");
 	}
 
 	public void removeAssociation(String source, String target) {
@@ -76,20 +82,27 @@ public class NVWrapper {
 
 		if (deleteMe != null) {
 			associations.remove(deleteMe);
+			return;
 		}
 
-		System.out.println("Error: Association not found");
+		throw new IllegalArgumentException("Association not found");
 	}
 
 	public void addAssignment(String source, String target) {
 		Assignment newAssign = new Assignment(source, target);
 
 		if (findAssignment(source, target) == null) {
-			assignments.add(newAssign);
-			return;
+			if (valid(source, target)) {
+				assignments.add(newAssign);
+				return;
+			}
+			else {
+				throw new IllegalArgumentException("Invalid source and target");
+			}
+			
 		}
 
-		System.out.println("Error: duplicate assignment");
+		throw new IllegalArgumentException("Duplicate assignment");
 	}
 
 	public void removeAssignment(String source, String target) {
@@ -101,7 +114,7 @@ public class NVWrapper {
 			return;
 		}
 
-		System.out.println("Error: Association not found");
+		throw new IllegalArgumentException("Assignment not found.");
 	}
 
 	private Node findNode(String node) {
@@ -122,7 +135,6 @@ public class NVWrapper {
 				return inAssoc;
 			}
 		}
-
 		return null;
 	}
 
@@ -135,5 +147,25 @@ public class NVWrapper {
 		}
 
 		return null;
+	}
+	
+	private boolean valid(String source, String target) {
+		boolean src = false;
+		boolean trg = false;
+		
+		for (Node node : nodes) {
+			if (node.getName().equals(source)) {
+				src = true;
+			}
+			
+			if (node.getName().equals(target)) {
+				trg = true;
+			}
+		}
+		
+		if (src && trg) {
+			return true;
+		}
+		return false;
 	}
 }

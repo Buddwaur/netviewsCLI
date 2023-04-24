@@ -8,9 +8,9 @@ public class Association {
 	private String operations[];
 
 	public Association(String source, String target, String operations[]) {
-		this.source = source;
-		this.target = target;
-		this.operations = operations;
+		setSource(source);
+		setTarget(target);
+		setOperations(operations);
 	}
 
 	public String getSource() {
@@ -18,6 +18,9 @@ public class Association {
 	}
 
 	public void setSource(String source) {
+		if (source == null || source.length() == 0) {
+			throw new IllegalArgumentException("Source cannot be empty.");
+		}
 		this.source = source;
 	}
 
@@ -26,6 +29,9 @@ public class Association {
 	}
 
 	public void setTarget(String target) {
+		if (target == null || target.length() == 0) {
+			throw new IllegalArgumentException("Target cannot be empty.");
+		}
 		this.target = target;
 	}
 
@@ -35,5 +41,19 @@ public class Association {
 
 	public void setOperations(String operations[]) {
 		this.operations = operations;
+	}
+	
+	public String operationsString() {
+		StringBuilder ops = new StringBuilder();
+		
+		for (int i = 0; i < operations.length; i++) {
+			ops.append(operations[i]);
+			
+			if (i != operations.length - 1) {
+				ops.append(" ");
+			}
+		}
+		
+		return ops.toString();
 	}
 }

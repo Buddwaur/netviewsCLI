@@ -24,14 +24,14 @@ public class Utilities {
 		NVWrapper object = null;
 
 		try {
-			fileReader = new FileReader("netviewscli/src/main/java/test_files/test.json");
+			fileReader = new FileReader("/home/noah/netviews/netviewsCLI/netviewscli/src/main/java/test_files/med-topo-policy.json");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (fileReader != null) {
 			object = gson.fromJson(fileReader, NVWrapper.class);
-			System.out.println(object);
+			//System.out.println(object);
 		} else {
 			System.out.println("fileReader is null in deserialize");
 		}
@@ -46,9 +46,9 @@ public class Utilities {
 
 	public static void serialize(NVWrapper obj) {
 		String output = gson.toJson(obj);
-		System.out.println(output);
+		//System.out.println(output);
 		try {
-			fileWriter = new FileWriter("netviewscli/src/main/java/test_files/test.json");
+			fileWriter = new FileWriter("/home/noah/netviews/netviewsCLI/netviewscli/src/main/java/test_files/test.json");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

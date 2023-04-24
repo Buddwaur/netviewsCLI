@@ -18,14 +18,18 @@ public class RemoveAssociation implements Runnable {
         if (source == null || target == null || source.length() == 0
                 || target.length() == 0) {
             // Missing parameters
-            throw new IllegalArgumentException("Association Source, or Target is empty");
+            System.out.println("Association Source, or Target is empty");
         }
 
         NVWrapper wrap = Utilities.deserialize();
 
-        wrap.removeAssociation(source, target);
-
-        Utilities.serialize(wrap);
+        try {
+        	wrap.removeAssociation(source, target);
+            Utilities.serialize(wrap);
+        } catch (IllegalArgumentException e) {
+        	System.out.println(e.getMessage());
+        }
+        
     }
 
 }

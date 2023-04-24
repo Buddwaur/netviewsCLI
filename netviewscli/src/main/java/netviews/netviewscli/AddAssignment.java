@@ -18,14 +18,18 @@ public class AddAssignment implements Runnable {
         if (source == null || target == null || source.length() == 0
                 || target.length() == 0) {
             // Missing parameters
-            throw new IllegalArgumentException("Assignment Source, or Target is empty");
+            System.out.println("Assignment Source, or Target is empty");
         }
 
         NVWrapper wrap = Utilities.deserialize();
 
-        wrap.addAssignment(source, target);
-
-        Utilities.serialize(wrap);
+        try {
+        	wrap.addAssignment(source, target);
+            Utilities.serialize(wrap);
+        } catch (IllegalArgumentException e) {
+        	System.out.println(e.getMessage());
+        }
+        
     }
 
 }

@@ -72,7 +72,7 @@ public class NetviewsCLI {
                         exitCode = new CommandLine(new RemoveNode()).execute(arguments);
                         break;
                     case "addassociation":
-                        exitCode = new CommandLine(new AddAssociation()).execute(arguments);
+                    	exitCode = new CommandLine(new AddAssociation()).execute(arguments);
                         break;
                     case "removeassociation":
                         exitCode = new CommandLine(new RemoveAssociation()).execute(arguments);
@@ -88,8 +88,9 @@ public class NetviewsCLI {
                         System.exit(0);
                     default:
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+                exitCode = 1;
             }
             System.out.println(exitCode);
 

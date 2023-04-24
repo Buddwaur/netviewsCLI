@@ -25,8 +25,16 @@ public class OverwritePolicy implements Runnable {
         // Connect to Server with Socket
         try {
             sock = new Socket("127.0.0.1", 9191);
-            PrintStream output = new PrintStream(sock.getOutputStream());
-            output.println("Change!");
+            PrintStream outputToServer = new PrintStream(sock.getOutputStream());
+            outputToServer.println("Change");
+            outputToServer.flush();
+            BufferedReader output = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+            //output.println("Change!");
+            //String s = output.readLine();
+            //while(s != null) {
+            	//System.out.println(s);
+            	//s = output.readLine();
+            //}
             output.close();
             sock.close();
         } catch (UnknownHostException e) {
