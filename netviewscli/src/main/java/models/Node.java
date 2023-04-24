@@ -8,9 +8,9 @@ public class Node {
 	private Properties properties;
 	
 	public Node(String name, String type, Properties prop) {
-		this.name = name;
-		this.type = type;
-		this.properties = prop;
+		setName(name);
+		setType(type);
+		setProperties(prop);
 	}
 
 	public String getName() {
@@ -18,6 +18,9 @@ public class Node {
 	}
 
 	public void setName(String name) {
+		if (name == null || name.length() == 0) {
+			throw new IllegalArgumentException("Name cannot be empty.");
+		}
 		this.name = name;
 	}
 
@@ -26,6 +29,9 @@ public class Node {
 	}
 
 	public void setType(String type) {
+		if (type == null || type .length() == 0) {
+			throw new IllegalArgumentException("Type cannot be empty.");
+		}
 		this.type = type;
 	}
 

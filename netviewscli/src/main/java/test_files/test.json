@@ -13,8 +13,9 @@
     {
       "source": "HRU",
       "target": "Dev",
-      "operations": ["tcp/22", "arp", "tcp/80"]
-    }
+      "operations": ["tcp/22", "arp", "icmp"]
+    },
+    { "source": "h5", "target": "Other", "operations": ["tcp/22"] }
   ],
   "assignments": [
     { "source": "h1", "target": "HRU" },

@@ -14,7 +14,7 @@ public class RemoveNode implements Runnable {
     public void run() {
         if (name == null || name.length == 0) {
             // Missing parameters
-            throw new IllegalArgumentException("NodeName is empty");
+            System.out.println("NodeName is empty");
         }
 
         String fullName = String.join(" ", name);
@@ -22,10 +22,13 @@ public class RemoveNode implements Runnable {
         // String fullType = String.join(" ", type);
 
         NVWrapper wrap = Utilities.deserialize();
-
-        wrap.removeNode(fullName);
-
-        Utilities.serialize(wrap);
+        try {
+        	wrap.removeNode(fullName);
+            Utilities.serialize(wrap);
+        } catch(IllegalArgumentException e) {
+        	System.out.println(e.getMessage());
+        }
+        
     }
 
 }

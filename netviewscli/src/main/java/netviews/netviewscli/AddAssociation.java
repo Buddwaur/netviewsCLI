@@ -21,14 +21,25 @@ public class AddAssociation implements Runnable {
         if (source == null || target == null || operations.length == 0 || source.length() == 0
                 || target.length() == 0) {
             // Missing parameters
-            throw new IllegalArgumentException("Association Source, Target, or Operations is empty");
+            System.out.println("Association Source, Target, or Operations is empty");
+        }
+        else {
+        	NVWrapper wrap = Utilities.deserialize();
+            try {
+            	wrap.addAssociation(source, target, operations);
+            	Utilities.serialize(wrap);
+            }
+            catch (IllegalArgumentException e) {
+            	System.out.println(e.getMessage());
+            }
         }
 
-        NVWrapper wrap = Utilities.deserialize();
+        
+        
+        
+        
 
-        wrap.addAssociation(source, target, operations);
-
-        Utilities.serialize(wrap);
+        
     }
 
 }

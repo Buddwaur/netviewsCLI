@@ -17,7 +17,7 @@ public class AddNode implements Runnable {
     public void run() {
         if (type == null || name == null || name.length == 0 || type.length() == 0) {
             // Missing parameters
-            throw new IllegalArgumentException("Node Type or Name is empty");
+            System.out.println("Node Type or Name is empty");
         }
 
         String fullName = String.join(" ", name);
@@ -25,10 +25,15 @@ public class AddNode implements Runnable {
         // String fullType = String.join(" ", type);
 
         NVWrapper wrap = Utilities.deserialize();
+        
+        try {
+        	wrap.addNode(fullName, type, null);
+            Utilities.serialize(wrap);
+        } catch(IllegalArgumentException e) {
+        	System.out.println(e.getMessage());
+        }
 
-        wrap.addNode(fullName, type, null);
-
-        Utilities.serialize(wrap);
+        
     }
 
 }
