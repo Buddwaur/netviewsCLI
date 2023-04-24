@@ -1,13 +1,11 @@
 package models;
 
 public class Assignment {
-	
+
 	private String source;
-	
+
 	private String target;
-	
-	private String[] operations;
-	
+
 	public Assignment(String source, String target) {
 		setSource(source);
 		setTarget(target);
@@ -35,11 +33,4 @@ public class Assignment {
 		this.target = target;
 	}
 
-	public String[] getOperations() {
-		return operations;
-	}
-
-	public void setOperations(String[] operations) {
-		this.operations = operations;
-	}
 }

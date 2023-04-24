@@ -36,8 +36,6 @@ public class NetviewsCLI {
 
             final String command = parsedInput[0];
 
-            System.out.println(command);
-
             String arguments[] = Arrays.copyOfRange(parsedInput, 1, parsedInput.length);
             // for (int i = 1; i < parsedInput.length; i++) {
 
@@ -53,11 +51,8 @@ public class NetviewsCLI {
 
             try {
                 switch (command.toLowerCase()) {
-                    case "testcommand":
-                        exitCode = new CommandLine(new TestCommand()).execute(arguments);
-                        break;
                     case "help":
-                        // exitCode = new CommandLine( new Help() ).execute();
+                        exitCode = new CommandLine(new Help()).execute(arguments);
                         break;
                     case "setup":
                         exitCode = new CommandLine(new Setup()).execute(arguments);
@@ -83,6 +78,12 @@ public class NetviewsCLI {
                     case "removeassignment":
                         exitCode = new CommandLine(new RemoveAssignment()).execute(arguments);
                         break;
+                    case "addoperations":
+                        exitCode = new CommandLine(new AddOperations()).execute(arguments);
+                        break;
+                    case "removeoperations":
+                        exitCode = new CommandLine(new RemoveOperations()).execute(arguments);
+                        break;
                     case "exit":
                         scan.close();
                         System.exit(0);
@@ -92,7 +93,7 @@ public class NetviewsCLI {
                 System.out.println(e.getMessage());
                 exitCode = 1;
             }
-            System.out.println(exitCode);
+            System.out.println("Command exited with code: " + exitCode);
 
         } while (input.compareTo(exit) != 0);
         scan.close();
@@ -124,8 +125,6 @@ public class NetviewsCLI {
             if (stringBuilder.toString().trim().isEmpty()) {
                 continue;
             }
-
-            // System.out.println(stringBuilder);
         }
 
         for (int y = 0; y < height; y++) {
@@ -138,8 +137,6 @@ public class NetviewsCLI {
             if (stringBuilder.toString().trim().isEmpty()) {
                 continue;
             }
-
-            // System.out.println(stringBuilder);
         }
 
         for (int y = 0; y < height; y++) {

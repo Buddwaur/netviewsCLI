@@ -3,9 +3,7 @@ package netviews.netviewscli;
 import picocli.CommandLine.Command;
 //import picocli.CommandLine.Parameters;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -22,7 +20,9 @@ public class OverwritePolicy implements Runnable {
 
     @Override
     public void run() {
-        // Connect to Server with Socket
+        // Connect to Server with Socket (doesn't do anything with the
+    	// socket besides connect and close because connecting automatically
+    	// triggers the code to reload the policy from the policy file)
         try {
             sock = new Socket("127.0.0.1", 9191);
             PrintStream outputToServer = new PrintStream(sock.getOutputStream());

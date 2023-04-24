@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NVWrapper {
 	private ArrayList<Node> nodes;
@@ -117,10 +118,43 @@ public class NVWrapper {
 		throw new IllegalArgumentException("Assignment not found.");
 	}
 
+	public void addOperations(String source, String target, String[] operations) {
+		Association association = findAssociation(source, target);
+
+		String currentOperations[] = association.getOperations();
+		int length = currentOperations.length;
+		currentOperations = Arrays.copyOf(currentOperations, length + operations.length);
+		for (int i = length; i < currentOperations.length; i++) {
+			currentOperations[i] = operations[i - length];
+		}
+
+		association.setOperations(currentOperations);
+	}
+
+	public void removeOperations(String source, String target, String operations[]) {
+		Association association = findAssociation(source, target);
+
+		String currentOpperation[] = association.getOperations();
+
+		int swapped = 0;
+		for (int i = 0; i < operations.length; i++) {
+			for (int j = 0; j <= currentOpperation.length - swapped; j++) {
+				if (operations[i].equals(currentOpperation[j])) {
+					currentOpperation[j] = currentOpperation[currentOpperation.length - 1 - swapped];
+					currentOpperation[currentOpperation.length - 1 - swapped] = operations[i];
+					swapped++;
+					break;
+				}
+			}
+
+		}
+		association.setOperations(Arrays.copyOf(currentOpperation, currentOpperation.length - operations.length));
+
+	}
+
 	private Node findNode(String node) {
 		for (Node inNodes : nodes) {
 			if (inNodes.getName().equals(node)) {
-				// System.out.println("Node name is a duplicate");
 				return inNodes;
 			}
 		}
@@ -131,7 +165,6 @@ public class NVWrapper {
 	private Association findAssociation(String source, String target) {
 		for (Association inAssoc : associations) {
 			if (inAssoc.getSource().equals(source) && inAssoc.getTarget().equals(target)) {
-				// System.out.println("Node name is a duplicate");
 				return inAssoc;
 			}
 		}
@@ -141,7 +174,6 @@ public class NVWrapper {
 	private Assignment findAssignment(String source, String target) {
 		for (Assignment inAssign : assignments) {
 			if (inAssign.getSource().equals(source) && inAssign.getTarget().equals(target)) {
-				// System.out.println("Node name is a duplicate");
 				return inAssign;
 			}
 		}
